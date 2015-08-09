@@ -2,6 +2,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	/* of Setup */
+	ofSetVerticalSync(true);
+	ofSetWindowShape(1920, 1080);
+	ofSetFrameRate(60);
+
 	/* Kinect Setup */
 	kinect.open();
 	kinect.initColorSource();
@@ -10,12 +15,7 @@ void ofApp::setup(){
 	kinectScale = 1;
 	camera.setDistance(1);	// MOVING THE CAMERA CLOSER
 
-	/* of Setup */
-	ofSetVerticalSync(true);
-	ofSetWindowShape(1920, 1080);
-	
-	
-	/* PArticle Setup */
+	/* Particle Setup */
 	int num = 750;
 	p1.assign(num, demoParticle());
 	p2.assign(num, demoParticle());

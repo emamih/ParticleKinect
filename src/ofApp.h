@@ -24,6 +24,8 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 		
 		void drawJoints3D();
+
+
 		ofxKFW2::Device		kinect;
 		ofEasyCam			camera;
 		float kinectScale;

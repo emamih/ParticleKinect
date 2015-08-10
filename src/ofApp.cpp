@@ -4,6 +4,7 @@
 void ofApp::setup(){
 	/* of Setup */
 	ofSetVerticalSync(true);
+	//TODO Felxible für verschiedene Systeme
 	ofSetWindowShape(1920, 1080);
 	ofSetFrameRate(60);
 
@@ -102,6 +103,7 @@ void ofApp::setHandCursor(JointType jointType, ofVec3f pos){
 //--------------------------------------------------------------
 void ofApp::update(){
 	// UDPATE ALL INITIALIZED KINECT STREAMS
+	//TODO messen ob es sich lohnt das in nen seperaten Stream zu packen
 	kinect.update();
 
 	for(unsigned int i = 0; i <  p1.size(); i++){
@@ -173,8 +175,8 @@ void ofApp::drawJoints3D()
 		// IF THE BODY IS BEING TRACKED...
 		if (this->kinect.getBodySource()->getBodies()[i].tracked){
 
-			auto b = this->kinect.getBodySource()->getBodies()[i];
-			HandState leftHandState = b.leftHandState;
+			ofxKinectForWindows2::Data::Body body = this->kinect.getBodySource()->getBodies()[i];
+			HandState leftHandState = body.leftHandState;
 			ofColor * tmpColor;
 			if(i == 0){
 				tmpColor = new ofColor(50, 255, 50);
@@ -194,7 +196,7 @@ void ofApp::drawJoints3D()
 				tmpColor = new ofColor(34, 34, 34);
 
 			// ITERATE THROUGH ALL JOINTS IN THE TRACKED BODY...
-			for (std::map<JointType, ofxKFW2::Data::Joint>::iterator it = b.joints.begin(); it != b.joints.end(); ++it)
+			for (std::map<JointType, ofxKFW2::Data::Joint>::iterator it = body.joints.begin(); it != body.joints.end(); ++it)
 			{
 				if (it->second.getTrackingState() == TrackingState_Tracked)
 				{
